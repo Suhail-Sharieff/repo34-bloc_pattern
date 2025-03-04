@@ -2,32 +2,35 @@ import 'package:bloc_pattern/_01_Cubit/_01_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-
 class IncPage extends StatelessWidget {
   const IncPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final instance=BlocProvider.of<Couter_Cubit>(context);
+    final instance = BlocProvider.of<Couter_Cubit>(context);
     return Scaffold(
       body: Center(
-        child: FloatingActionButton(child: const Icon(Icons.add),onPressed: (){
-          instance.increment();
-        }),
+        child: FloatingActionButton(
+            child: const Icon(Icons.add),
+            onPressed: () {
+              instance.increment();
+            }),
       ),
     );
   }
 }
+
 class DecPage extends StatelessWidget {
   const DecPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final instance=BlocProvider.of<Couter_Cubit>(context);
+    final instance = BlocProvider.of<Couter_Cubit>(context);
     return Scaffold(
       body: Center(
-        child: FloatingActionButton(child: const Icon(Icons.minimize),onPressed: (){
-          instance.decrement();
-        }),
+        child: FloatingActionButton(
+            child: const Icon(Icons.minimize),
+            onPressed: () {
+              instance.decrement();
+            }),
       ),
     );
   }
@@ -47,7 +50,7 @@ class _TwoState extends State<Two> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-    create: (_)=>Couter_Cubit(),
+    create: (_)=>Couter_Cubit(),------------becoz of this u can now use value using BlocBuilder().., and call methods my making instance=BlocProvider.of<>()
       child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
@@ -58,15 +61,18 @@ class _TwoState extends State<Two> {
         ),);
       }
   * */
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Counter multiple pages"),),
+      appBar: AppBar(
+        title: Text("Counter multiple pages"),
+      ),
       body: Center(
-        child:  BlocBuilder<Couter_Cubit, int>(
+        child: BlocBuilder<Couter_Cubit, int>(
           builder: (context, state) {
-            return Text("Counter: $state", style: const TextStyle(fontSize: 24));
+            return Text("Counter: $state",
+                style: const TextStyle(fontSize: 24));
           },
         ),
       ),
@@ -74,18 +80,19 @@ class _TwoState extends State<Two> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           TextButton(
-            child: const Text("Go to inc page"),
-              onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const IncPage()));
-          }),
+              child: const Text("Go to inc page"),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const IncPage()));
+              }),
           TextButton(
-            child: const Text("Go to dec page"),
-              onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const DecPage()));
-          })
+              child: const Text("Go to dec page"),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const DecPage()));
+              })
         ],
       ),
     );
   }
 }
-
