@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 //MODEL
@@ -5,6 +7,11 @@ class Todo{
   String desc;
   DateTime added_on;
   Todo({required this.desc,required this.added_on});
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "[${desc}:${added_on}]";
+  }
 }
 
 //Bloc
@@ -18,8 +25,15 @@ class TodoBloc extends Bloc<AddEvent,List<Todo>>{
     on<AddEvent>((ev,emit)=>addTodo(ev,emit));
   }
   void addTodo(AddEvent ev,Emitter<List<Todo>>emit){
-    state.add(Todo(desc: ev.desc, added_on: ev.added_on));
-    emit([...state]);
+    emit([...state,Todo(desc: ev.desc, added_on: ev.added_on)]);//creates a updated list with different address
+  }
+
+  //--------used while debugging the changes occued
+  @override
+  void onChange(Change<List<Todo>> change) {
+    // TODO: implement onChange
+    super.onChange(change);
+    log(change.toString());
   }
 }
 
@@ -38,17 +52,17 @@ class _TodoThreeState extends State<TodoThree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Todo app using Bloc"),backgroundColor: Colors.blue,),
+      appBar: AppBar(title: const Text("Todo app using Bloc"),backgroundColor: Colors.blue,),
       body: Center(
         child: BlocBuilder<TodoBloc,List<Todo>>(
-          builder: (context,todo_list) {
+          builder: (context,todoList) {
             return ListView.builder(
-                itemCount: todo_list.length,
+                itemCount: todoList.length,
                 itemBuilder: (_,idx){
-                  if(todo_list.isEmpty) return Center(child: Text("Empty List!"),);
+                  if(todoList.isEmpty) return const Center(child: Text("Empty List!"),);
                   return ListTile(
-                    title: Text(todo_list[idx].desc),
-                    subtitle: Text(todo_list[idx].added_on.toString()),
+                    title: Text(todoList[idx].desc),
+                    subtitle: Text(todoList[idx].added_on.toString()),
                   );
                 },
             );
