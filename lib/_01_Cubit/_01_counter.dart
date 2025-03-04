@@ -5,6 +5,8 @@ class Couter_Cubit extends Cubit<int> {
   Couter_Cubit() : super(0);
   void increment() {
     emit(state + 1);
+  } void decrement() {
+    emit(state - 1);
   }
 }
 
