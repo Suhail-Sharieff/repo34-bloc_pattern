@@ -1,11 +1,11 @@
 import 'package:bloc_pattern/_01_Cubit/_01_counter.dart';
-import 'package:bloc_pattern/_01_Cubit/_02_multiple_page.dart';
 import 'package:bloc_pattern/_02_bloc/_01_counter_bloc.dart';
 import 'package:bloc_pattern/_02_bloc/_02_todo_bloc.dart';
 import 'package:bloc_pattern/_02_bloc/_03_authorization_demo_using_bloc/auth_bloc.dart';
 import 'package:bloc_pattern/_02_bloc/_03_authorization_demo_using_bloc/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          textTheme: GoogleFonts.aBeeZeeTextTheme(
+            Theme.of(context).textTheme,
+          ),
           useMaterial3: true,
         ),
         home: const LoginUI_Three(),

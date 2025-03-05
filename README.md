@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+//JDK ISSUES: https://github.com/flutter/flutter/issues/156304#issuecomment-2397707812
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:bloc_pattern/_02_bloc/_03_authorization_demo_using_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginUI_Three extends StatefulWidget {
   const LoginUI_Three({super.key});
@@ -55,7 +56,7 @@ class _LoginUI_ThreeState extends State<LoginUI_Three> {
                           Auth_Login_Requested(
                               password_requested: passcontr.text));
                     },
-                    child: const Text("Submit")),
+                    child: Text("Submit",style: GoogleFonts.robotoSlab(),)),
               ],
             );
           },
